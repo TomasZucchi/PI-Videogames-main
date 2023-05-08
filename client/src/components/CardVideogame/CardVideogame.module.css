@@ -1,0 +1,87 @@
+.div {
+    background-color: #5a3333;
+    border: 2px solid #3ab41f7c;
+    border-radius: 5%;
+    width: 260px;
+    height: 315px;
+}
+
+.div:hover {
+    -webkit-transform: scale(105%);
+            transform: scale(105%);
+    z-index: 1;
+    background-color: #3ab41f7c;
+    -webkit-box-shadow: 0px 1px 10px 1px #3ab41f7c;
+            box-shadow: 0px 1px 10px 1px #3ab41f7c;
+}
+
+.title {
+    font-family: "Roboto",sans-serif;
+    font-size: 18px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.imgs {
+    max-width: 100%;
+    border: 1px solid #3ab41f7c;
+}
+
+.afterImg {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text {
+    font-family: "Roboto",sans-serif;
+    font-size: 14px;
+    color: white;
+    padding-left: 13px;
+    justify-content: start;
+}
+
+.rating {
+    margin-right: 13px;
+    padding: 1.5px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: black;
+    border-radius: 10%;
+    border: 1px solid #3ab41f7c;
+    height: 25px;
+}
+
+.btnDelete {
+    background-color: #3ab41f7c;
+    border-color: #760a0a;
+    width: 20%;
+    height: 28px;
+    color: #760a0a;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+@font-face {
+    font-family: 'myFont2';
+    src: url('../../fontsType/kart.ttf');
+}
+
+
+
+@media screen and (max-width: 700px) {
+    
+    .div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
