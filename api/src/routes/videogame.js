@@ -91,25 +91,33 @@ exports.videoGameByIdRoute = async function(req, res, next) {
 
 exports.createVideoGameRoute = async function(req, res, next) {
     const { name, description, released, rating, platforms, image, genres } = req.body;
-    
-    let getDbInfoGenres = await Genre.findAll({
-        where: {
-            name: genres
-        }
+
+    if(!name || !description || !platforms) {
+        return res.status(400).send("Missing required fields: name, description, platforms");
+    }
+
+    let getDbInfoGenres = [];
+
+    if(genres) {
+        getDbInfoGenres = await Genre.findAll({
+            where: {
+                name: genres
+            }
+        });
+    }
+
+    let newVideogame = await Videogame.create({
+        name,
+        description,
+        released,
+        rating,
+        platforms,
+        image
     });
 
-
-    if(name && description && platforms) {
-        let newVideogame = await Videogame.create({
-            name,
-            description,
-            released,
-            rating,
-            platforms,
-            image
-        })
-
-        newVideogame.addGenres(getDbInfoGenres);
-        return res.send("Videogame created successfully");
+    if(genres) {
+        await newVideogame.addGenres(getDbInfoGenres);
     }
+
+    return res.send("Videogame created successfully");
 };
