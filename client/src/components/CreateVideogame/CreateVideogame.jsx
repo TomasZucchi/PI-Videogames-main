@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Nav from "../Nav/Nav";
 import s from "./CreateVideogame.module.css"
 import swal from'sweetalert2';
-
+import axios from "axios"
 export default function CreateVideogame() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -60,29 +60,49 @@ export default function CreateVideogame() {
             genres: input.genres.filter(g => g !== el)
         });
     }
+    const handlerSubmit = async (event) => {
+        event.preventDefault();               //<------|  Previene que se recargue la pagina al enviar el formulario
 
-    function handlerSubmit(e) {
-        e.preventDefault();
-    
-        dispatch(postVideogames(input));
-        swal.fire(
-            'Good job!',
-            'You created videogame.',
-            'success'
-          )
 
-        setInput({
-            name: "",
-            description: "",
-            released: "",
-            rating: "",
-            platforms: [],
-            image: "",
-            genres: []
+        axios.post("/videogames", JSON.stringify(input), {  //<------|  Enviamos el formulario a la ruta /activities en formato JSON(me aseguro que llegue en ese formato si osi)
+          headers: {
+            'Content-Type': 'application/json'
+          }
         })
+        .then(res => {
+          alert("Formulario enviado correctamente");
+        })
+        .catch(err => {
+            console.log(err);
+          alert(err);
+        });
+    
+    };
+
+
+
+    //function handlerSubmit(e) {
+       // e.preventDefault();
+    
+       // dispatch(postVideogames(input));
+       // swal.fire(
+            //'Good job!',
+            //'You created videogame.',
+            //'success'
+          //)
+
+        //setInput({
+            //name: "",
+            //description: "",
+            //released: "",
+            //rating: "",
+            //platforms: [],
+            //image: "",
+            //genres: []
+        //})
         
-        history.push("/home")
-    }
+        //history.push("/home")
+    //}
 
     useEffect(() => {
         dispatch(getGenres());
