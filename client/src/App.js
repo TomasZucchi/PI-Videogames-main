@@ -8,7 +8,7 @@ import DetailVideogame from "./components/DetailVideogame/DetailVideogame";
 import About from './components/About/About';
 import axios from "axios"
 
-axios.defaults.baseURL = "https://pi-videogames-main-zdjf-bzre5h700-tomaszucchi.vercel.app/";
+axios.defaults.baseURL = "https://pi-videogames-main-production-51e1.up.railway.app/";
 
 
 
