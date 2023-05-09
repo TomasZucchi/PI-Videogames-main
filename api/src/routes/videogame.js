@@ -1,7 +1,7 @@
 const axios = require ('axios');
 const { Videogame, Genre } = require('../db.js');
 const { API_KEY } = process.env
-
+const {createVideoGameRoute} = require ('../controllers/createVideogame')
 
 // ---------------------- Para traer el videojuego que coincida con el id pasado ---------------------
 
@@ -72,7 +72,7 @@ const getAllVideogamesById = async function(id) {
 
 // ---------------------- Ruta para encontrar videojuego por id ------------------------
 
-exports.videoGameByIdRoute = async function(req, res, next) {
+exports.videoGameByIdRoute = async(req, res, next) => {
     const { id } = req.params;
 
     let videogamesById = await getAllVideogamesById(id);
@@ -84,40 +84,17 @@ exports.videoGameByIdRoute = async function(req, res, next) {
     }
 };
 
-
-
-
-// ---------------------- Ruta para crear un videojuego ----------------------------
-
-exports.createVideoGameRoute = async function(req, res, next) {
+exports.postVideogame = async(req,res) =>{
     const { name, description, released, rating, platforms, image, genres } = req.body;
 
-    if(!name || !description || !platforms) {
-        return res.status(400).send("Missing required fields: name, description, platforms");
+    try{
+        const response = await createVideoGameRoute (name, description, released, rating, platforms, image, genres )
+    res.status (200).json (response)
+    } 
+    catch (error) {
+        res.status (400).send(error.message)
     }
-
-    let getDbInfoGenres = [];
-
-    if(genres) {
-        getDbInfoGenres = await Genre.findAll({
-            where: {
-                name: genres
-            }
-        });
-    }
-
-    let newVideogame = await Videogame.create({
-        name,
-        description,
-        released,
-        rating,
-        platforms,
-        image
-    });
-
-    if(genres) {
-        await newVideogame.addGenres(getDbInfoGenres);
-    }
-
-    return res.send("Videogame created successfully");
+    
 };
+// ---------------------- Ruta para crear un videojuego ----------------------------
+//module.exports = {postVideogame,videoGameByIdRoute};
