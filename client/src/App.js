@@ -6,6 +6,9 @@ import Home from './components/Home/Home';
 import CreateVideogame from "./components/CreateVideogame/CreateVideogame";
 import DetailVideogame from "./components/DetailVideogame/DetailVideogame";
 import About from './components/About/About';
+import axios from "axios"
+
+axios.defaults.baseURL = "https://pi-videogames-main-production-51e1.up.railway.app/;";
 
 
 
