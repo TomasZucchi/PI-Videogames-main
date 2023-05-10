@@ -31,9 +31,9 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+      type: DataTypes.DECIMAL(),
+      allowNull: false
+    }
   },
   { timestamps: false }
   );
