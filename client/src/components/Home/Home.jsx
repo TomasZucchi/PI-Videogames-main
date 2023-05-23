@@ -48,7 +48,7 @@ export default function Home() {
         setGenrechange("")
         setCurrentPage(1);
         setSource("All");
-        // window.location.reload()
+        window.location.reload()
     }
 
     function handlerGenres(e) {
@@ -69,7 +69,7 @@ export default function Home() {
         setOrder("Order" + e)
     }
 
-    function handlerByName(e) { //no puedo pasar un estado local a otro componente?
+    function handlerByName(e) { 
         dispatch(orderByName(e.target.value))
         setCurrentPage(1);
         setRatingchange("");

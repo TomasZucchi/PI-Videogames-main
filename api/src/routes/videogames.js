@@ -164,7 +164,7 @@ exports.videoGamesRoute = async function (req, res, next) {
 
 // ---------------------- Ruta para eliminar un videojuego ----------------------------
 
-exports.deleteVideoGameRoute = async function(req, res, next) {
+exports.deleteVideoGameRoute = async function(req, res) {
     const {id} = req.params;
     
     Videogame.destroy({
